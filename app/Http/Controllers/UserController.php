@@ -19,16 +19,21 @@ class UserController extends Controller
             'email'     => 'required|email|max:191|unique:users',
             'password'  => 'required|min:6',
         ]);
-        $users = new User([
-            'name'      => $request->name,
-            'email'     => $request->email,
-            'photo'     => $request->photo,
-            'address'     => $request->address,
-            'gender'    => $request->gender,
-            'password'  =>bcrypt($request->password),
-            'role'      =>'admin',
-            'api_token' =>bcrypt($request->email)
-        ]);
+        $users = new User;
+        $users->name   = $request->name;
+        $users->email   = $request->email;
+        $users->address    = $request->address;
+        $users->gender    = $request->gender;
+        $users->phone    = $request->phone;
+        $users->password  =bcrypt($request->password);
+        $users->role    ='admin';
+        $users->api_token =bcrypt($request->email);
+        if($request->hasFile('photo')){
+                $users->photo = $request->file('photo')->getClientOriginalName();
+                $foto = $request->file('photo');
+                $namaFoto = $foto->getClientOriginalName();
+                $path = $foto->move(public_path('/images'), $namaFoto);
+        }
         $users->save();
         return redirect('/admin/admin');
     }

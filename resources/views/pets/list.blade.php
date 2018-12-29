@@ -15,6 +15,7 @@
             <th>Tanggal lahir</th>
             <th>Riwayat Kesehatan</th>
             <th>Photo</th>
+            <th>Id Penjual</th>
         </tr>
         </thead>
         <tbody>
@@ -29,9 +30,10 @@
                  <td>{!! $pet->tgl_lahir !!}</td>
                  <td>{!! $pet->riwayat_kesehatan !!}</td>
                  <td>{!! $pet->photo !!}</td>
-            </tr>
-             @php($i++)
+                 <td>{!! $pet->id_user !!}</td>
+                 @php($i++)
         @endforeach
+            </tr>
         </tbody>
     </table>
 @stop

@@ -22,4 +22,5 @@ protected $hidden = [
     {
       return $this->hasMany(Barang::class);
     }
+    
 }

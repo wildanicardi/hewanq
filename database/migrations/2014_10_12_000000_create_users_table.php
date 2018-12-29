@@ -22,9 +22,6 @@ class CreateUsersTable extends Migration
             $table->text('photo')->nullable();
             $table->string('password');
             $table->text('address');
-            $table->string('provinsi')->nullable();
-            $table->string('kota')->nullable();
-            $table->string('zip')->nullable();
             $table->text('pet')->nullable();//untuk dokter
             $table->text('facility')->nullable();//untuk dokter
             $table->string('favorite_pet')->nullable();//untuk pembeli

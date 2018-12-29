@@ -13,9 +13,9 @@ Route::get('users/profile','UserController@profile')->middLeware('auth:api');
 // Route::get('articles','ArticleController@articles');
 // Route::post('article/create','ArticleController@create');
 
-Route::get('barangs','BarangController@barangs');
-Route::post('barang/create','BarangController@store');
-Route::delete('/barang/{id}', 'BarangController@destroy');
+// Route::get('barangs','BarangController@barangs');
+// Route::post('barang/create','BarangController@store');
+// Route::delete('/barang/{id}', 'BarangController@destroy');
 
 //new
 Route::group(['namespace' => 'Api'], function(){
@@ -41,3 +41,6 @@ Route::group(['namespace' => 'Api'], function(){
     //Route::get('service/{id}/detail_service', 'ItemController@detailService');
     Route::delete('item/{id}', 'ItemController@destroy');
 });
+//keranjang
+    Route::get('keranjang','KeranjangController@index');
+    Route::post('buatkeranjang/{id}', 'KeranjangController@store');

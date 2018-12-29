@@ -156,7 +156,7 @@
             <th style="padding-left: 15px;">No</th>
             <th>Name</th>
             <th>Email</th>
-            <th>Photo</th>
+            <th>ID User</th>
             <th>Role</th>
             <th width="110px;">Action</th>
         </tr>
@@ -168,7 +168,7 @@
                  <td style="padding-left: 15px;">{!! $i !!}</td>
                  <td>{!! $users->name !!}</td>
                  <td>{!! $users->email !!}</td>
-                 <td><img src="/images/{{ $users->photo}}" alt=""></td>
+                 <td >{!! $users->id !!}</td>
                  <td>{!! $users->role !!}</td>
                  
                  <td>

@@ -11,7 +11,7 @@
                 <div class="card-header"></div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('user.list') }}" aria-label="{{ __('Form') }}">
+                    <form method="POST" action="{{ route('user.list') }}" aria-label="{{ __('Form') }}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group row">
@@ -74,10 +74,10 @@
                             <label for="phone" class="col-md-4 col-form-label text-md-right">{{ __('Photo') }}</label>
 
                             <div class="col-md-6">
-                               <!-- <input id="phone" type="text" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone" value="{{ old('phone') }}" required autofocus> -->
+                               
                                <div class="input-group mb-3">
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="inputGroupFile01">
+                                        <input type="file" class="custom-file-input" id="inputGroupFile01" name="photo">
                                         <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                                     </div>
                                 </div>
