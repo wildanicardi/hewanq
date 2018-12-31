@@ -21,17 +21,21 @@ class JasaController extends Controller
         $user = User::find($id);
         $catering = User::where('role' , 'penjual,dokter')->get(); 
         $request->validate([
-            'shop_name'      => 'required',
-            'address'     => 'required',
-            'open_at'  => 'required',
-            'facility'  => 'required'
+            'name'      => 'required',
+            'alamat'     => 'required',
+            'Hewan_dilayani'  => 'required',
+            'deskripsi'  => 'required'
         ]);
 
         $service = new service;
-            $service->shop_name = $request->shop_name;
-            $service->address = $request->address;
-            $service->open_at = $request->open_at;
-            $service->facility = $request->facility;
+            $service->name = $request->name;
+            $service->alamat = $request->alamat;
+            $service->Hewan_dilayani = $request->Hewan_dilayani;
+            $service->kota = $request->kota;
+            $service->hari_buka = $request->hari_buka;
+            $service->price = $request->price;
+            $service->jam_buka = $request->jam_buka;
+            $service->deskripsi = $request->deskripsi;
             $service->id_user = $id;
             if($request->hasFile('photo')){
                 $service->photo = $request->file('photo')->getClientOriginalName();
@@ -53,17 +57,23 @@ class JasaController extends Controller
     public function updateService(Request $request, $id)
     {
         $request->validate([
-            'shop_name'      => 'required',
-            'address'     => 'required',
-            'open_at'  => 'required',
-            'facility'  => 'required'
+            'name'      => 'required',
+            'alamat'     => 'required',
+            'Hewan_dilayani'  => 'required',
+            'deskripsi'  => 'required'
         ]);
 
         $service = Service::find($id)->update([
-            "shop_name" => $request->shop_name,
-            "address" => $request->address,
-            "open_at" => $request->open_at,
-            "facility" => $request->facility
+            "name" => $request->name,
+            "alamat" => $request->alamat,
+            "kota" => $request->kota,
+            "Hewan_dilayani" => $request->Hewan_dilayani,
+            "alamat" => $request->alamat,
+            "hari_buka" => $request->hari_buka,
+            "jam_buka" => $request->jam_buka,
+            "photo" => $request->photo,
+            "deskripsi" => $request->deskripsi,
+            "harga" => $request->harga,
         ]);
 
         return response()->json([

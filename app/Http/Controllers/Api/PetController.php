@@ -25,14 +25,16 @@ class PetController extends Controller
         $pet = User::where('role' , 'penjual,dokter')->get(); 
          $request->validate([
              'name'      => 'required',
-             'jenis_hewan' => 'required',
+             'deskripsi_barang' => 'required',
          ]);
  
          $pet = new Barang;
             $pet->id_user = $id;
              $pet->name = $request->name;
-             $pet->jenis_barang = $request->jenis_barang;
+             $pet->deskripsi_barang = $request->deskripsi_barang;
              $pet->stock = $request->stock;
+             $pet->kota = $request->kota;
+             $pet->alamat = $request->alamat;
              $pet->price = $request->price;
              $pet->jenis_hewan = $request->jenis_hewan;
              $pet->gender = $request->gender;
@@ -61,13 +63,15 @@ class PetController extends Controller
      {
          $request->validate([
             'name'      => 'required',
-            'jenis_hewan' => 'required',
+            'deskripsi_barang' => 'required',
          ]);
  
          $pet = Barang::find($id)->update([
             "name" => $request->name,
-            "jenis_barang" => $request->jenis_barang,
+            "deskripsi_barang" => $request->deskripsi_barang,
             "photo" => $request->photo,
+            "kota" => $request->kota,
+            "alamat" => $request->alamat,
             "stock" => $request->stock,
             "price" => $request->price,
             "jenis_hewan" => $request->jenis_hewan,

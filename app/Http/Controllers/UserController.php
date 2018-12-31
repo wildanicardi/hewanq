@@ -17,13 +17,13 @@ class UserController extends Controller
         $this->validate($request,[
             'name'      => 'required|string|max:191',
             'email'     => 'required|email|max:191|unique:users',
-            'password'  => 'required|min:6',
+            'password'  => 'same:confirm-password',
         ]);
         $users = new User;
         $users->name   = $request->name;
         $users->email   = $request->email;
-        $users->address    = $request->address;
-        $users->gender    = $request->gender;
+        $users->alamat    = $request->alamat;
+        $users->jenis_kelamin    = $request->jenis_kelamin;
         $users->phone    = $request->phone;
         $users->password  =bcrypt($request->password);
         $users->role    ='admin';
@@ -96,11 +96,11 @@ class UserController extends Controller
             'name'      => $request->name,
             'email'     => $request->email,
             'photo'     => $request->photo,
-            'address'     => $request->address,
-            'gender'    => $request->gender,
-            'pet'    => $request->pet,
-            'facility'    => $request->facility,
-            'phone'     => $request->phone,
+            'alamat'     => $request->alamat,
+            'jenis_kelamin'    => $request->jenis_kelamin,
+            'hewan_dilayani'    => $request->hewan_dilayani,
+            'fasilitas'    => $request->fasilitas,
+            'kota'     => $request->kota,
             'password'  =>bcrypt($request->password),
             'role'      =>'dokter',
             'api_token' =>bcrypt($request->email)
@@ -134,8 +134,8 @@ class UserController extends Controller
             'name'      => $request->name,
             'email'     => $request->email,
             'photo'     => $request->photo,
-            'address'     => $request->address,
-            'gender'    => $request->gender,
+            'alamat'     => $request->alamat,
+            'jenis_kelamin'    => $request->jenis_kelamin,
             'phone'     => $request->phone,
             'deskripsi' => $request->deskripsi,
             'password'  =>bcrypt($request->password),

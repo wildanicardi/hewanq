@@ -18,8 +18,8 @@ class AuthController extends Controller
             'name'      => $request->name,
             'email'     => $request->email,
             'photo'     => $request->photo,
-            'address'     => $request->address,
-            'gender'    => $request->gender,
+            'alamat'     => $request->alamat,
+            'jenis_kelamin'    => $request->jenis_kelamin,
             'phone'     => $request->phone,
             'password'  =>bcrypt($request->password),
             'api_token' =>bcrypt($request->email)

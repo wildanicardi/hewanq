@@ -44,7 +44,7 @@
                             <label for="gender" class="col-md-4 col-form-label text-md-right">{{ __('gender') }}</label>
 
                             <div class="col-md-6">
-                            <select name="gender" id="gender">gender
+                            <select name="jenis_kelamin" id="jenis_kelamin">gender
                             <option value="pria">PRIA</option>
                             <option value="wanita">WANITA</option>
                             </select>
@@ -60,11 +60,11 @@
                             <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Address') }}</label>
 
                             <div class="col-md-6">
-                            <textarea name="address" id="address" cols="30" rows="10" class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}"  value="{{ old('address') }}" required autofocus></textarea>
+                            <textarea name="alamat" id="alamat" cols="30" rows="10" class="form-control{{ $errors->has('alamat') ? ' is-invalid' : '' }}"  value="{{ old('alamat') }}" required autofocus></textarea>
 
-                                @if ($errors->has('address'))
+                                @if ($errors->has('alamat'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('address') }}</strong>
+                                        <strong>{{ $errors->first('alamat') }}</strong>
                                     </span>
                                 @endif
                             </div>

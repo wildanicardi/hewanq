@@ -32,7 +32,7 @@
                             <label for="gender" class="col-md-4 col-form-label text-md-right">{{ __('gender') }}</label>
 
                             <div class="col-md-6">
-                            <select name="gender" id="gender">gender
+                            <select name="jenis_kelamin" id="jenis_kelamin">gender
                             <option value="pria">PRIA</option>
                             <option value="wanita">WANITA</option>
                             </select>
@@ -42,7 +42,7 @@
                             <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Address') }}</label>
 
                             <div class="col-md-6">
-                            <textarea name="address" id="address" cols="30" rows="10"  required autofocus>{{$data->address}}</textarea>
+                            <textarea name="alamat" id="alamat" cols="30" rows="10"  required autofocus>{{$data->alamat}}</textarea>
                             </div>
                         </div>
                         

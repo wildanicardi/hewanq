@@ -12,7 +12,7 @@ class Service extends Model
      * @var array
      */
     protected $fillable = [
-        'shop_name', 'address','open_at','facility','photo','id_user',
+        'name', 'Hewan_dilayani','kota','alamat','hari_buka','id_user','jam_buka','photo','deskripsi','harga',
     ];
 
     /**

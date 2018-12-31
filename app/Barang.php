@@ -12,7 +12,7 @@ class Barang extends Model
      * @var array
      */
     protected $fillable = [
-        'name','id_user', 'jenis_barang','stock','price','photo','size','ukuran','jenis_hewan','gender','tgl_lahir','riwayat_kesehatan',
+        'name','id_user', 'deskripsi_barang','kota','alamat','photo','stock','size','ukuran','jenis_hewan','gender','tgl_lahir','riwayat_kesehatan','jenis',
     ];
 
     /**

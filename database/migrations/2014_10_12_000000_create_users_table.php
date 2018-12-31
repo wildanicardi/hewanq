@@ -17,17 +17,18 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('gender');
+            $table->string('jenis_kelamin');
             $table->string('phone')->nullable();
             $table->text('photo')->nullable();
             $table->string('password');
-            $table->text('address');
-            $table->text('pet')->nullable();//untuk dokter
-            $table->text('facility')->nullable();//untuk dokter
+            $table->string('kota');
+            $table->text('alamat');
+            $table->text('hewan_dilayani')->nullable();//untuk dokter
+            $table->text('faisilitas')->nullable();//untuk dokter
             $table->string('favorite_pet')->nullable();//untuk pembeli
             $table->text('deskripsi')->nullable();;//untuk penjual
             $table->string('api_token');
-            $table->enum('role',array('admin','pembeli','penjual','dokter'))->default('pembeli');
+            // $table->enum('role',array('admin','pembeli','penjual','dokter'))->default('pembeli');
             $table->rememberToken();
             $table->timestamps();
         });

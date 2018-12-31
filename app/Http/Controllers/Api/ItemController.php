@@ -23,16 +23,18 @@ class ItemController extends Controller
         $item = User::where('role' , 'penjual,dokter')->get(); 
         $request->validate([
             'name'      => 'required',
-            'jenis_barang' => 'required',
+            'deskripsi_barang' => 'required',
         ]);
 
         $item = new Barang;
             $item->name = $request->name;
-            $item->jenis_barang = $request->jenis_barang;
+            $item->deskripsi_barang = $request->deskripsi_barang;
+            $item->kota = $request->kota;
+            $item->alamat = $request->price;
             $item->stock = $request->stock;
             $item->price = $request->price;
-            $item->size = $request->size;
             $item->ukuran = $request->ukuran;
+            $item->size = $request->size;
             $item->id_user = $id;
             $item->jenis='item';
             if($request->hasFile('photo')){
@@ -62,10 +64,11 @@ class ItemController extends Controller
 
         $item = Barang::find($id)->update([
             "name" => $request->name,
-            "jenis_barang" => $request->jenis_barang,
+            "deskripsi_barang" => $request->deskripsi_barang,
             "photo" => $request->photo,
+            "kota" => $request->kota,
+            "alamat" => $request->alamat,
             "stock" => $request->stock,
-            "price" => $request->price,
             "size" => $request->size,
             "ukuran" => $request->ukuran
         ]);

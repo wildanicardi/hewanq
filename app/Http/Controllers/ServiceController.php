@@ -45,37 +45,6 @@ class ServiceController extends Controller
 
       return redirect('/admin/admin/service');
     }
-    // public function buatService($id){
-
-    //     $user = User::find($id);
-    //     return view('services.form', compact('user'));
-
-    // }
-
-    // public function createService(Request $request, $id){
-    //     $user = User::find($id);
-    //     $service = Service::where('name' , $user->name)->get(); 
-    //     $request->validate([
-    //         'shop_name'      => 'required|string',
-    //     ]);
-
-    //     $service = new Service;
-    //         $service->shop_name = $request->shop_name;
-    //         $service->open_at = $request->open_at;
-    //         $service->address = $request->address;
-    //         $service->facility = $request->facility;
-    //         $service->id_user = $id;
-    //         if($request->hasFile('photo')){
-    //             $foto = $request->file('photo');
-    //             $namaFoto = $foto->getClientOriginalName();
-    //             $path = $foto->move(public_path('/images'), $namaFoto);
     
-    //         }
-
-    //     $service->save();
-    //     return view('/admin/admin/service', compact('user','service'));
-    // }
-
- 
   
 }

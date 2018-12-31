@@ -17,12 +17,14 @@ class CreateBarangsTable extends Migration
             $table->increments('id');
             $table->integer('id_user')->foreign('id_user')->references('id ')->on('users');
             $table->string('name');
-            $table->string('jenis_barang');
+            $table->string('deskripsi_barang');//bisa untuk hewan dan produk
+            $table->string('kota');
+            $table->text('alamat');
             $table->text('photo')->nullable();;
             $table->integer('stock');
             $table->integer('price');
-            $table->decimal('size', 8, 2)->nullable();//untuk items
-            $table->string('ukuran')->nullable();// untuk items
+            $table->decimal('size', 8, 2)->nullable();//untuk produk
+            $table->string('ukuran')->nullable();// untuk produk
             $table->string('jenis_hewan')->nullable();// untuk hewan
             $table->string('gender')->nullable();//untuk hewan
             $table->date('tgl_lahir')->nullable();//untuk hewan

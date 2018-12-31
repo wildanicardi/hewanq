@@ -16,11 +16,15 @@ class CreateServiceTable extends Migration
         Schema::create('services', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_user')->foreign('id_user')->references('id')->on('users');
-            $table->string('shop_name');
-            $table->text('address');
-            $table->text('open_at');
+            $table->string('name');
+            $table->string('Hewan_dilayani');
+            $table->string('kota');
+            $table->text('alamat');
+            $table->text('hari_buka');
+            $table->time('jam_buka');
             $table->text('photo')->nullable();
-            $table->text('facility');
+            $table->text('deskripsi');
+            $table->integer('harga');
             $table->timestamps();
         });
     }

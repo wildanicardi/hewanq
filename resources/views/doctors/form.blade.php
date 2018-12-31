@@ -44,11 +44,11 @@
                             <label for="gender" class="col-md-4 col-form-label text-md-right">{{ __('gender') }}</label>
 
                             <div class="col-md-6">
-                            <input id="name" type="text" class="form-control{{ $errors->has('gender') ? ' is-invalid' : '' }}" name="gender" value="{{ old('gender') }}" required autofocus>
+                            <input id="name" type="text" class="form-control{{ $errors->has('jenis_kelamin') ? ' is-invalid' : '' }}" name="jenis_kelamin" value="{{ old('jenis_kelamin') }}" required autofocus>
 
-                                @if ($errors->has('gender'))
+                                @if ($errors->has('jenis_kelamin'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('gender') }}</strong>
+                                        <strong>{{ $errors->first('jenis_kelamin') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -57,11 +57,11 @@
                             <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Address') }}</label>
 
                             <div class="col-md-6">
-                            <textarea name="address" id="address" cols="30" rows="10" class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}"  value="{{ old('address') }}" required autofocus></textarea>
+                            <textarea name="alamat" id="alamat" cols="30" rows="10" class="form-control{{ $errors->has('alamat') ? ' is-invalid' : '' }}"  value="{{ old('alamat') }}" required autofocus></textarea>
 
-                                @if ($errors->has('address'))
+                                @if ($errors->has('alamat'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('address') }}</strong>
+                                        <strong>{{ $errors->first('alamat') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -70,9 +70,9 @@
                             <label for="pet" class="col-md-4 col-form-label text-md-right">{{ __('Pet') }}</label>
 
                             <div class="col-md-6">
-                                <input id="pet" type="text" class="form-control{{ $errors->has('pet') ? ' is-invalid' : '' }}" name="pet" value="{{ old('pet') }}" required autofocus>
+                                <input id="hewan_dilayani" type="text" class="form-control{{ $errors->has('hewan_dilayani') ? ' is-invalid' : '' }}" name="hewan_dilayani" value="{{ old('hewan_dilayani') }}" required autofocus>
 
-                                @if ($errors->has('pet'))
+                                @if ($errors->has('hewan_dilayani'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('pet') }}</strong>
                                     </span>
@@ -97,11 +97,11 @@
                             <label for="facility" class="col-md-4 col-form-label text-md-right">{{ __('Facility') }}</label>
 
                             <div class="col-md-6">
-                            <textarea name="facility" id="facility" cols="30" rows="10" class="form-control{{ $errors->has('facility') ? ' is-invalid' : '' }}"  value="{{ old('facility') }}" required autofocus></textarea>
+                            <textarea name="fasilitas" id="fasilitas" cols="30" rows="10" class="form-control{{ $errors->has('fasilitas') ? ' is-invalid' : '' }}"  value="{{ old('fasilitas') }}" required autofocus></textarea>
 
-                                @if ($errors->has('facility'))
+                                @if ($errors->has('fasilitas'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('facility') }}</strong>
+                                        <strong>{{ $errors->first('fasilitas') }}</strong>
                                     </span>
                                 @endif
                             </div>

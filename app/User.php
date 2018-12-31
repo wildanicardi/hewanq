@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email','gender','address','phone', 'password','photo','api_token','deskripsi','provinsi','kota','zip','pet','facility','favorite_pet',
+        'name', 'email','jenis_kelamin','alamat','phone', 'kota','password','photo','api_token','deskripsi','hewan_dilayani','fasilitas','favorite_pet','role',
     ];
 
     /**
@@ -37,5 +37,9 @@ class User extends Authenticatable
     public function Service()
     {
       return $this->hasMany(Service::class);
+    }
+    public function Role()
+    {
+      return $this->hasMany(Role::class);
     }
 }
