@@ -19,7 +19,7 @@ class JasaController extends Controller
 
     public function createService(Request $request, $id){
         $user = User::find($id);
-        $catering = User::where('role' , 'penjual,dokter')->get(); 
+        $service = User::where('role_id' , 3)->get(); 
         $request->validate([
             'name'      => 'required',
             'alamat'     => 'required',

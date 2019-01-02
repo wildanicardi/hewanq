@@ -15,7 +15,7 @@ class CreateServiceTable extends Migration
     {
         Schema::create('services', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_user')->foreign('id_user')->references('id')->on('users');
+            $table->integer('user_id')->foreign('user_id')->references('id')->on('users');
             $table->string('name');
             $table->string('Hewan_dilayani');
             $table->string('kota');
@@ -36,6 +36,6 @@ class CreateServiceTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('service');
+        Schema::dropIfExists('services');
     }
 }

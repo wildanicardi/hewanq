@@ -14,4 +14,8 @@ class role extends Model
     {
       return $this->belongsTo(Keranjang::class);
     }
+    public function users()
+    {
+      return $this->hasMany(Users::class);
+    }
 }

@@ -21,8 +21,8 @@
              <tr>
                  <td style="padding-left: 15px;">{!! $i !!}</td>
                  <td><img  src="/images/{{$article->photo}}" alt=""></td>
-                 <td>{!! $article->title !!}</td>
-                 <td>{!! $article->value !!}</td>
+                 <td>{!! $article->judul !!}</td>
+                 <td>{!! $article->isi !!}</td>
                  <td>
                  <form action="/admin/admin/article/{!! $article->id !!}" method="post" id="form_aksi">
                         <a href="/admin/admin/article/{!! $article->id !!}/edit" class="btn btn-success"><i class="fa fa-pencil"></i>edit</a>

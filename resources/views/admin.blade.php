@@ -156,8 +156,7 @@
             <th style="padding-left: 15px;">No</th>
             <th>Name</th>
             <th>Email</th>
-            <th>ID User</th>
-            <th>Role</th>
+            <th>Role ID</th>
             <th width="110px;">Action</th>
         </tr>
         </thead>
@@ -168,8 +167,7 @@
                  <td style="padding-left: 15px;">{!! $i !!}</td>
                  <td>{!! $users->name !!}</td>
                  <td>{!! $users->email !!}</td>
-                 <td >{!! $users->id !!}</td>
-                 <td>{!! $users->role !!}</td>
+                 <td >{!! $users->role_id !!}</td>
                  
                  <td>
                  <form action="/admin/admin/user/{!! $users->id !!}" method="post" id="form_aksi">

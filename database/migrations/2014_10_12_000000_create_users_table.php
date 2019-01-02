@@ -15,20 +15,20 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('role_id')->foreign('role_id')->references('id ')->on('role');
             $table->string('name');
             $table->string('email')->unique();
             $table->string('jenis_kelamin');
             $table->string('phone')->nullable();
             $table->text('photo')->nullable();
             $table->string('password');
-            $table->string('kota');
-            $table->text('alamat');
+            $table->string('kota')->nullable();
+            $table->text('alamat')->nullable();
             $table->text('hewan_dilayani')->nullable();//untuk dokter
             $table->text('faisilitas')->nullable();//untuk dokter
             $table->string('favorite_pet')->nullable();//untuk pembeli
             $table->text('deskripsi')->nullable();;//untuk penjual
             $table->string('api_token');
-            // $table->enum('role',array('admin','pembeli','penjual','dokter'))->default('pembeli');
             $table->rememberToken();
             $table->timestamps();
         });

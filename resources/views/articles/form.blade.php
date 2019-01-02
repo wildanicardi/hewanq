@@ -18,11 +18,11 @@
                             <label for="title" class="col-md-4 col-form-label text-md-right">{{ __('Title') }}</label>
 
                             <div class="col-md-6">
-                                <input id="title" type="text" class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}" name="title" value="{{ old('title') }}" required autofocus>
+                                <input id="judul" type="text" class="form-control{{ $errors->has('judul') ? ' is-invalid' : '' }}" name="judul" value="{{ old('judul') }}" required autofocus>
 
-                                @if ($errors->has('title'))
+                                @if ($errors->has('judul'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('title') }}</strong>
+                                        <strong>{{ $errors->first('judul') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -31,10 +31,10 @@
                             <label for="value" class="col-md-4 col-form-label text-md-right">{{ __('Value') }}</label>
 
                             <div class="col-md-6">
-                                <textarea name="value" id="value" cols="30" rows="10" class="form-control{{ $errors->has('value') ? ' is-invalid' : '' }}"  value="{{ old('value') }}" required autofocus></textarea>
-                                @if ($errors->has('value'))
+                                <textarea name="isi" id="isi" cols="30" rows="10" class="form-control{{ $errors->has('isi') ? ' is-invalid' : '' }}"  isi="{{ old('isi') }}" required autofocus></textarea>
+                                @if ($errors->has('isi'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('value') }}</strong>
+                                        <strong>{{ $errors->first('isi') }}</strong>
                                     </span>
                                 @endif
                             </div>

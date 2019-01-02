@@ -26,7 +26,7 @@
              <tr>
                  <td style="padding-left: 15px;">{!! $i !!}</td>
                  <td>{!! $doctor->name !!}</td>
-                 <td>{!! $doctor->email !!}</td>
+                 <td>{!! $doctor->alamat !!}</td>
                  <td>{!! $doctor->jenis_kelamin !!}</td>
                  <td>{!! $doctor->phone !!}</td>
                  <td>{!! $doctor->alamat !!}</td>

@@ -20,7 +20,7 @@ class ItemController extends Controller
 
     public function buatItem(Request $request, $id){
         $user = User::find($id);
-        $item = User::where('role' , 'penjual,dokter')->get(); 
+        $item = User::where('role_id' , 3)->get(); 
         $request->validate([
             'name'      => 'required',
             'deskripsi_barang' => 'required',

@@ -4,29 +4,36 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Role;
 use Auth;
 class UserController extends Controller
 {
     //web 
     public function form()
     {
-        return view('auth.user.form');
+        $data = new User();
+        $roleOption=Role::all(); 
+        $params = [
+            'data' =>$data,
+            'roleOption'=>$roleOption
+        ];
+        return view('auth.user.form',$params);
     }
      public function createAkun(Request $request,User $user)
     {
         $this->validate($request,[
             'name'      => 'required|string|max:191',
             'email'     => 'required|email|max:191|unique:users',
-            'password'  => 'same:confirm-password',
+            'password'  => 'required|min:6',
         ]);
         $users = new User;
         $users->name   = $request->name;
         $users->email   = $request->email;
+        $users->role_id    = $request->role_id;
         $users->alamat    = $request->alamat;
         $users->jenis_kelamin    = $request->jenis_kelamin;
         $users->phone    = $request->phone;
         $users->password  =bcrypt($request->password);
-        $users->role    ='admin';
         $users->api_token =bcrypt($request->email);
         if($request->hasFile('photo')){
                 $users->photo = $request->file('photo')->getClientOriginalName();
@@ -39,9 +46,13 @@ class UserController extends Controller
     }
     public function editAkun($id)
     {
-      $data['data'] = User::find($id);
-
-      return view('auth.user.edit', $data);
+      $data = User::find($id);
+      $roleOption=Role::all(); 
+      $params = [
+          'data' =>$data,
+          'roleOption'=>$roleOption
+      ];
+      return view('auth.user.edit', $params);
     }
 
     public function updateAkun($id, Request $request)
@@ -49,8 +60,13 @@ class UserController extends Controller
       	$req = $request->except('_method', '_token', 'submit');
 
         $result = User::where('id', $id)->update($req);
-
-        return redirect('/admin/admin');
+        $role_id  = $req['role_id'];
+        Role::find($role_id);
+        try{
+            return redirect('/admin/admin');
+        } catch (\Exception $ex){
+            return "<div class='alert alert-danger'>Terjadi kesalahan! Peran gagal disimpan!</div>";
+        }
     }
     public function destroyAkun($id)
     {
@@ -78,8 +94,8 @@ class UserController extends Controller
     //fucntion dokter
     public function indexDokter()
     {
-        $doctors = User::orderby('id','ASC')->where('role', 'dokter')->get();
-        return view('doctors.list',compact('doctors'));
+        $doctors = User::all()->where('role_id',4);
+            return view('doctors.list',compact('doctors'));
     }
     public function formDokter()
     {
@@ -111,7 +127,7 @@ class UserController extends Controller
     //api android
     public function doctors(User $dokter)
     {
-        $dokter = $dokter->all()->where('role','dokter');
+        $dokter = $dokter->all()->where('role_id',4);
 
         return response()->json($dokter);
         

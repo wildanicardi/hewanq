@@ -26,13 +26,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if(!Gate::allows('isAdmin')){
-            Auth::logout();
-            return redirect()->back()->with('alert', 'Akun Tidak Terdaftar!');
-         }else{
             $user = User::orderby('id','ASC')->get();
-            return view('/admin',compact('user'));
-         }
-        
+            return view('/admin',compact('user'));        
     }
 }

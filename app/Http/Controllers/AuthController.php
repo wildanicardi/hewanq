@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Role;
 use Auth;
 class AuthController extends Controller
 {
     public function registerAdmin(Request $request,User $user)
     {
+        
         $this->validate($request,[
             'name'      => 'required|string|max:191',
             'email'     => 'required|email|max:191|unique:users',
@@ -16,6 +18,7 @@ class AuthController extends Controller
         ]);
         $users = $user->create([
             'name'      => $request->name,
+            'role_id'  => 1,
             'email'     => $request->email,
             'photo'     => $request->photo,
             'alamat'     => $request->alamat,

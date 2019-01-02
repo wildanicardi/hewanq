@@ -73,11 +73,10 @@
                         </div>
                         <div class="form-group row">
                             <div class="col-md-6">
-                                <select name="role" id="role">role
-                                    <option value="admin">ADMIN</option>
-                                    <option value="penjual">Penjual</option>
-                                    <option value="pembeli">Pembeli</option>
-                                    <option value="Dokter">Dokter</option>
+                                <select name="role_id" id="role">role
+                                @foreach($roleOption as $num => $item)
+                                    <option value="{{$item->id}}" @if(!is_null($data)) @if($item->id == $data->role_id) selected="selected" @endif @endif >{{$item->nama_role}}</option>
+                                @endforeach
                                 </select>
                             </div>
                         </div>

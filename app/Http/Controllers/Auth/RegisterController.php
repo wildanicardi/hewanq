@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Role;
 use App\Http\Controllers\Controller;
 use App\Notifications\UserActivate;
 use Illuminate\Support\Facades\Hash;
@@ -55,7 +56,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name'      => 'required|string|max:255',
             'email'     => 'required|string|email|max:255|unique:users',
-            'gender'    => 'required|string|',
+            'jenis_kelamin'    => 'required|string|',
             'password'  => 'required|string|min:6|confirmed',
         ]);
     }
@@ -70,11 +71,13 @@ class RegisterController extends Controller
     {
         return User::create([
             'name' => $data['name'],
+            'role_id' => $data['role_id'],
             'email' => $data['email'],
-            'gender' => $data['gender'],
+            'jenis_kelamin' => $data['jenis_kelamin'],
             'password' => Hash::make($data['password']),
             'api_token' =>bcrypt($data['email'])
         ]);
+       
         return redirect()->route('login');
 
     }

@@ -23,7 +23,7 @@ class BarangController extends Controller
     //pet
     public function indexPet()
     {
-        // $users = User::where('role','penjual')->get();
+       $users = User::where('role_id',3)->get();
         $pets = Barang::orderby('id','ASC')->where('jenis', 'pet')->get();
         return view('pets.list',compact('pets','users'));
     }

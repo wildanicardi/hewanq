@@ -61,12 +61,12 @@ class ArticleController extends Controller
     public function create(Request $request,Article $article)
     {
         $this->validate($request,[
-            'title' 	  => 'required|min:5',
-    		'value'       => 'required|min:5'
+            'judul' 	  => 'required|min:5',
+    		'isi'       => 'required|min:5'
         ]);
         $articles = $article->create([
-            'title'      => $request->title,
-            'value'     => $request->value,  
+            'judul'      => $request->judul,
+            'isi'     => $request->isi,  
             
         ]);
         return $articles;
