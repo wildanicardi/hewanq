@@ -9,10 +9,11 @@
         <thead>
         <tr>
             <th style="padding-left: 15px;">No</th>
-            <th>Shop name</th>
-            <th>Address</th>
-            <th>Open At</th>
-            <th>Facility</th>
+            <th>Name</th>
+            <th>Alamat</th>
+            <th>Buka </th>
+            <th>Fasilitas</th>
+            <th>Harga</th>
             <th width="110px;">Action</th>
         </tr>
         </thead>
@@ -20,10 +21,11 @@
         @foreach($services as $service)
              <tr>
                  <td style="padding-left: 15px;">{!! $service->id !!}</td>
-                 <td>{!! $service->shop_name !!}</td>
-                 <td>{!! $service->address !!}</td>
-                 <td>{!! $service->open_at !!}</td>
-                 <td>{!! $service->facility !!}</td>
+                 <td>{!! $service->name !!}</td>
+                 <td>{!! $service->alamat !!}</td>
+                 <td>{!! $service->jam_buka !!}</td>
+                 <td>{!! $service->deskripsi !!}</td>
+                 <td>{!! $service->harga !!}</td>
                  <td>
                  <form action="/admin/admin/service/{!! $service->id !!}" method="post" id="form_aksi">
                         <a href="/admin/admin/service/{!! $service->id !!}/edit" class="btn btn-success"><i class="fa fa-pencil"></i>edit</a>

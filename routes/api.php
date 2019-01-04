@@ -10,31 +10,35 @@ Route::get('dokters','UserController@doctors');
 Route::get('penjual','UserController@penjual');
 Route::get('users/profile','UserController@profile')->middLeware('auth:api');
 
-// Route::get('articles','ArticleController@articles');
-// Route::post('article/create','ArticleController@create');
+Route::get('articles','ArticleController@articles');
 
-// Route::get('barangs','BarangController@barangs');
-// Route::post('barang/create','BarangController@store');
-// Route::delete('/barang/{id}', 'BarangController@destroy');
+
+Route::get('barangs','BarangController@barangs');// get data untuk tampilan awal android
+Route::get('barang/{id}','BarangController@barangku');
 
 //new
 Route::group(['namespace' => 'Api'], function(){
     //service
-    Route::get('service', 'JasaController@service');
+    Route::get('service', 'JasaController@service');// get data untuk tampilan awal android
+    Route::get('service/{id}','JasaController@index');
     Route::post('updateService/{id}', 'JasaController@updateService');
     Route::get('editService/{id}', 'JasaController@editCatering');
     Route::post('buatService/{id}', 'JasaController@createService');
     Route::get('service/{id}/detail_service', 'JasaController@detailService');
     Route::delete('service/{id}', 'JasaController@destroy');
+    
     //pet
-    Route::get('pet', 'PetController@pet');
+    Route::get('pet', 'PetController@pet');// get data untuk tampilan awal android
+    Route::get('pet/{id}','PetController@index');
     Route::post('updateHewan/{id}', 'PetController@updatePet');
     Route::get('editHewan/{id}', 'PetController@editPet');
     Route::post('buatHewan/{id}', 'PetController@createPet');
     //Route::get('service/{id}/detail_service', 'PetController@detailService');
     Route::delete('hewan/{id}', 'PetController@destroy');
+
     //item
-    Route::get('item', 'ItemController@item');
+    Route::get('item', 'ItemController@item');// get data untuk tampilan awal android
+    Route::get('item/{id}','ItemController@index');
     Route::post('updateItem/{id}', 'ItemController@updateItem');
     Route::get('editItem/{id}', 'ItemController@editItem');
     Route::post('buatItem/{id}', 'ItemController@buatItem');

@@ -27,4 +27,19 @@ class BarangController extends Controller
         $pets = Barang::orderby('id','ASC')->where('jenis', 'pet')->get();
         return view('pets.list',compact('pets','users'));
     }
+    //api android
+    public function barangs(Barang $barang)
+    {
+        $barang = $barang->all();
+        return response()->json($barang);
+        
+    }
+    public function barangku($id)
+    {
+        $barang = Barang::where('id_user',$id)->get();
+        return response()->json([
+          'barang' =>$barang
+        ]);
+        
+    }
 }

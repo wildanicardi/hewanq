@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Article;
+use App\User;
 class ArticleController extends Controller
 {
     public function index()
@@ -56,20 +57,6 @@ class ArticleController extends Controller
         $article = $article->all();
 
         return response()->json($article);
-        
-    }
-    public function create(Request $request,Article $article)
-    {
-        $this->validate($request,[
-            'judul' 	  => 'required|min:5',
-    		'isi'       => 'required|min:5'
-        ]);
-        $articles = $article->create([
-            'judul'      => $request->judul,
-            'isi'     => $request->isi,  
-            
-        ]);
-        return $articles;
         
     }
 

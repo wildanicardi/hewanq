@@ -11,18 +11,28 @@ use Validator;
 class PetController extends Controller
 {
      //api android
+     public function index($id)
+    {
+        $pet = Barang::where('id_user',$id)->get();
+        return response()->json([
+           'pet' => $pet
+        ]);
+        
+    }
      public function pet(Barang $pet)
      {
        
          $pet = $pet->where('jenis','pet')->get();
  
-         return response()->json($pet);
+         return response()->json([
+            'pet' => $pet
+        ]);
          
      }
  
      public function createPet(Request $request, $id){
         $user = User::find($id);
-        $pet = User::where('role' , 'penjual,dokter')->get(); 
+        $pet = User::where('role_id' , 3)->get(); 
          $request->validate([
              'name'      => 'required',
              'deskripsi_barang' => 'required',

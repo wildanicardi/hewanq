@@ -10,11 +10,21 @@ use Validator;
 class ItemController extends Controller
 {
     //api android
+    public function index($id)
+    {
+        $item = Barang::where('id_user',$id)->get();
+        return response()->json([
+           'item' => $item
+        ]);
+        
+    }
     public function item(Barang $item)
     {
         $item = $item->where('jenis','item')->get();
 
-        return response()->json($item);
+        return response()->json([
+        'item' => $item
+        ]);
         
     }
 

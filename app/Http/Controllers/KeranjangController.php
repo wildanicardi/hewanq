@@ -19,7 +19,7 @@ class KeranjangController extends Controller
    public function store(Request $request,$id)
     {
         $id = Barang::get('id_user');
-        $barang = Barang::get('price');
+        $harga = Barang::get('price');
         $duplicates = Keranjang::search(function ($KeranjangItem,$idbarang) use ($request) {
             return $KeranjangItem->id_cart === $request->id_cart;
         });
@@ -31,7 +31,7 @@ class KeranjangController extends Controller
         }
             $keranjang = new Keranjang;
             $keranjang->quantity = $request->quantity;
-            $keranjang->total_price = $keranjang->quantity * $barang;
+            $keranjang->total_price = $keranjang->quantity * $harga;
             $keranjang->id_barang = $idbarang;
             $keranjang->save();
             return response()->json([

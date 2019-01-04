@@ -25,7 +25,7 @@
                  <td style="padding-left: 15px;">{!! $i !!}</td>
                  <td><img src="/images/{!!$item->photo !!}" alt=""></td>
                  <td>{!! $item->name !!}</td>
-                 <td>{!! $item->jenis_barang !!}</td>
+                 <td>{!! $item->deskripsi_barang !!}</td>
                  <td>{!! $item->stock !!}</td>
                  <td>{!! $item->size !!}</td>
                  <td>{!! $item->ukuran !!}</td>

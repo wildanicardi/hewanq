@@ -13,7 +13,17 @@ class JasaController extends Controller
     public function service(Service $service)
     {
         $service = $service->all();
-        return response()->json($service);
+        return response()->json([
+           'service' => $service
+        ]);
+        
+    }
+    public function index($id)
+    {
+        $service = Service::where('user_id',$id)->get();
+        return response()->json([
+           'service' => $service
+        ]);
         
     }
 
@@ -33,10 +43,10 @@ class JasaController extends Controller
             $service->Hewan_dilayani = $request->Hewan_dilayani;
             $service->kota = $request->kota;
             $service->hari_buka = $request->hari_buka;
-            $service->price = $request->price;
+            $service->harga = $request->harga;
             $service->jam_buka = $request->jam_buka;
             $service->deskripsi = $request->deskripsi;
-            $service->id_user = $id;
+            $service->user_id = $id;
             if($request->hasFile('photo')){
                 $service->photo = $request->file('photo')->getClientOriginalName();
                 $foto = $request->file('photo');

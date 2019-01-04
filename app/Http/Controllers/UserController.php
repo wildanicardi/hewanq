@@ -79,7 +79,9 @@ class UserController extends Controller
     {
         $users = $user->all();
 
-        return response()->json($users);
+        return response()->json([
+         'user' => $users
+        ]);
     }
     public function profile(User $user)
     {
