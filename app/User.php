@@ -42,4 +42,7 @@ class User extends Authenticatable
     {
       return $this->hasMany(Role::class);
     }
+    public function getRole(){
+      return $this->hasOne('App\Role','id','role_id');
+    }
 }

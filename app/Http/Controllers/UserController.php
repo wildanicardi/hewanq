@@ -120,7 +120,7 @@ class UserController extends Controller
             'fasilitas'    => $request->fasilitas,
             'kota'     => $request->kota,
             'password'  =>bcrypt($request->password),
-            'role'      =>'dokter',
+            'role_id'      =>4,
             'api_token' =>bcrypt($request->email)
         ]);
         return redirect('/admin/admin/doctor');
@@ -157,9 +157,35 @@ class UserController extends Controller
             'phone'     => $request->phone,
             'deskripsi' => $request->deskripsi,
             'password'  =>bcrypt($request->password),
-            'role'      =>'penjual',
+            'role_id'      =>3,
             'api_token' =>bcrypt($request->email)
         ]);
         return response()->json($penjual);
     }
+    public function edit($id){
+        $user = User::find($id);
+
+        return response()->json([
+            'message' => 'berhasil diupdate'
+        ]);
+    }
+    public function update(Request $request, $id)
+    {
+        $service = Service::find($id)->update([
+            "name" => $request->name,
+            "email" => $request->email,
+            "kota" => $request->kota,
+            "alamat" => $request->alamat,
+            "alamat" => $request->alamat,
+            "deskripsi" => $request->deskripsi,
+            "photo" => $request->photo,
+            "deskripsi" => $request->deskripsi,
+            'role_id' =>$request->role_id,
+        ]);
+
+        return response()->json([
+            'message' => 'berhasil diupdate'
+        ]);
+    }
+
 }   

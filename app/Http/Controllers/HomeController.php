@@ -5,6 +5,7 @@ use Gate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use App\Role;
 
 
 class HomeController extends Controller
@@ -27,6 +28,10 @@ class HomeController extends Controller
     public function index()
     {
             $user = User::orderby('id','ASC')->get();
-            return view('/admin',compact('user'));        
+
+            $params = ([
+                'user' => $user
+            ]);
+            return view('/admin',$params);        
     }
 }

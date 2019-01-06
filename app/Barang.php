@@ -31,4 +31,7 @@ class Barang extends Model
     {
       return $this->belongsTo(Keranjang::class);
     }
+    public function getUser(){
+      return $this->hasOne('App\user','id','id_user');
+    }
 }

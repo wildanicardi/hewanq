@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->integer('role_id')->foreign('role_id')->references('id ')->on('role');
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('jenis_kelamin');
+            $table->string('jenis_kelamin')->nullable();
             $table->string('phone')->nullable();
             $table->text('photo')->nullable();
             $table->string('password');
