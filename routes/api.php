@@ -9,6 +9,7 @@ Route::post('dokter/register','UserController@createDokter');
 Route::get('users','UserController@users');
 Route::get('dokters','UserController@doctors');
 Route::get('detailDokter/{id}','UserController@detailDokter');
+Route::get('detailUser/{id}','UserController@detailUser');
 Route::get('penjual','UserController@penjual');
 Route::get('users/profile','UserController@profile')->middLeware('auth:api');
 
@@ -49,7 +50,8 @@ Route::group(['namespace' => 'Api'], function(){
     Route::delete('item/{id}', 'ItemController@destroy');
 });
 //keranjang
-    Route::get('keranjang','KeranjangController@index');
     Route::get('tambahToKeranjang/{id}','BarangController@getAddToCart');
     // Route::post('buatkeranjang/{id}', 'KeranjangController@store');
     Route::get('cart','KeranjangController@getCart');
+    Route::post('/add-to-cart', 'KeranjangController@addToCart');
+    Route::get('/{user_id}/list', 'KeranjangController@listProductInCart');

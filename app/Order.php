@@ -6,21 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'id_pengiriman','id_user', 'id_barang','id_pembayaran','catatan','total','status_bayar','status_selesai','tanggal',
-    ];
+    protected $table = 'orders';
+    protected $primaryKey = 'id';
+    public $timestamps = false;
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        
-    ];
+    public function getUser()
+    {
+        return $this->hasOne('App\User', 'id', 'id_user');
+    }
+
+    public function getOrderItems()
+    {
+        return $this->hasMany('App\OrderItem', 'orders_id', 'id');
+    }
 }

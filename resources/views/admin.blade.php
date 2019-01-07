@@ -167,7 +167,7 @@
                  <td style="padding-left: 15px;">{!! $i !!}</td>
                  <td>{!! $users->name !!}</td>
                  <td>{!! $users->email !!}</td>
-                 <td >{!! $users->getrole->nama_role !!}</td>
+                 <td >{!! $users->getRole->nama_role !!}</td>
                  
                  <td>
                  <form action="/admin/admin/user/{!! $users->id !!}" method="post" id="form_aksi">

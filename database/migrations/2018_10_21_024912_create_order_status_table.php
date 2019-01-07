@@ -13,12 +13,10 @@ class CreateKeranjangTable extends Migration
      */
     public function up()
     {
-        Schema::create('keranjangs', function (Blueprint $table) {
-            $table->increments('id_cart');
-            $table->integer('id_user')->foreign('id_user')->references('id')->on('users');
-            $table->integer('id_barang')->foreign('id_barang')->references('id')->on('barangs');
-            $table->integer('quantity');
-            $table->decimal('sub_total',10, 2);
+        Schema::create('order_status', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('order_name');
+            $table->text('order_deskripsi');
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ class CreateKeranjangTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('keranjangs');
+        Schema::dropIfExists('order_status');
     }
 }

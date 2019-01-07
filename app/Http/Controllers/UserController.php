@@ -93,18 +93,22 @@ class UserController extends Controller
     {
         $users = user::all();
     }
+    public function detailUser($id)
+    {
+        $user = User::find($id);
+        
+        return response()->json([
+            'user' => $user,
+          ]);
+
+    }
     //fucntion dokter
     public function detailDokter($id)
     {
         $dokter = User::find($id);
         
         return response()->json([
-            'nama' => $dokter->name,
-            'jenis_kelamin' => $dokter->jenis_kelamin,
-            'phone' => $dokter->phone,
-            'alamat' => $dokter->alamat,
-            'hewan_dilayani' => $dokter->hewan_dilayani,
-            'fasilitas' => $dokter->fasilitas,
+            'dokter' => $dokter,
           ]);
 
     }
@@ -170,6 +174,7 @@ class UserController extends Controller
             'email'     => $request->email,
             'photo'     => $request->photo,
             'alamat'     => $request->alamat,
+            'kota'     => $request->kota,
             'jenis_kelamin'    => $request->jenis_kelamin,
             'phone'     => $request->phone,
             'deskripsi' => $request->deskripsi,
@@ -216,6 +221,7 @@ class UserController extends Controller
             'email'     => $request->email,
             'photo'     => $request->photo,
             'alamat'     => $request->alamat,
+            "kota"          => $request->kota,
             'jenis_kelamin'    => $request->jenis_kelamin,
             'phone'     => $request->phone,
             'hewan_dilayani' => $request->hewan_dilayani,

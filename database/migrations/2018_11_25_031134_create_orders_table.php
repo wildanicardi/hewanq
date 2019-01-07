@@ -16,12 +16,10 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_user')->foreign('id_user')->references('id ')->on('users');
-            $table->integer('id_barang')->foreign('id_barang')->references('id ')->on('barangs');
-            $table->string('catatan');
+            $table->integer('order_status_id')->foreign('order_status_id')->references('id ')->on('order_status');
+            $table->string('name');
             $table->integer('total');
-            $table->integer('status_bayar');
-            $table->integer('status_selesai');
-            $table->dateTime('tanggal');
+            $table->integer('bayar');
             $table->timestamps();
         });
     }

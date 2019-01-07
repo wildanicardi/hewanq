@@ -13,14 +13,11 @@ class CreateDataPengirimanTable extends Migration
      */
     public function up()
     {
-        Schema::create('data_pengiriman', function (Blueprint $table) {
+        Schema::create('order_items', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_order')->foreign('id_order')->references('id')->on('orders');
-            $table->string('nama_penerima');
-            $table->integer('telepon');
-            $table->text('alamat');
-            $table->dateTime('tanggal');
-            $table->string('status');
+            $table->integer('id_barang')->foreign('id_barang')->references('id ')->on('barangs');
+            $table->integer('orders_id')->foreign('orders_id')->references('id ')->on('orders');
+            $table->integer('quantity');
             $table->timestamps();
         });
     }
@@ -32,6 +29,6 @@ class CreateDataPengirimanTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('data_pengiriman');
+        Schema::dropIfExists('order_items');
     }
 }
