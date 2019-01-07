@@ -187,5 +187,31 @@ class UserController extends Controller
             'message' => 'berhasil diupdate'
         ]);
     }
+    public function createDokter(Request $request,User $user)
+    {
+        $this->validate($request,[
+            'name'      => 'required|string|max:191',
+            'email'     => 'required|email|max:191|unique:users',
+            'password'  => 'required|min:6',
+        ]);
+        $dokter = $user->create([
+            'name'      => $request->name,
+            'email'     => $request->email,
+            'photo'     => $request->photo,
+            'alamat'     => $request->alamat,
+            'jenis_kelamin'    => $request->jenis_kelamin,
+            'phone'     => $request->phone,
+            'hewan_dilayani' => $request->hewan_dilayani,
+            'favorite_pet' => $request->favorite_pet,
+            'faisilitas' => $request->faisilitas,
+            'deskripsi' => $request->deskripsi,
+            'password'  =>bcrypt($request->password),
+            'role_id'      =>4,
+            'api_token' =>bcrypt($request->email)
+        ]);
+        return response()->json([
+           'dokter' => $dokter
+        ]);
+    }
 
 }   
