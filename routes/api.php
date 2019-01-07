@@ -13,8 +13,8 @@ Route::get('users/profile','UserController@profile')->middLeware('auth:api');
 Route::get('articles','ArticleController@articles');
 
 
-Route::get('barangs','BarangController@barangs');// get data untuk tampilan awal android
-Route::get('barang/{id}','BarangController@barangku');
+Route::get('barangs/{id}','BarangController@barangs');// get data untuk tampilan awal android
+Route::get('barang/{id}','BarangController@barangku');//get data detail barnag ketika di klik
 
 //new
 Route::group(['namespace' => 'Api'], function(){
@@ -47,4 +47,6 @@ Route::group(['namespace' => 'Api'], function(){
 });
 //keranjang
     Route::get('keranjang','KeranjangController@index');
-    Route::post('buatkeranjang/{id}', 'KeranjangController@store');
+    Route::get('tambahToKeranjang/{id}','BarangController@getAddToCart');
+    // Route::post('buatkeranjang/{id}', 'KeranjangController@store');
+    Route::get('cart','KeranjangController@getCart');

@@ -15,9 +15,10 @@ class CreateKeranjangTable extends Migration
     {
         Schema::create('keranjangs', function (Blueprint $table) {
             $table->increments('id_cart');
+            $table->integer('id_user')->foreign('id_user')->references('id')->on('users');
             $table->integer('id_barang')->foreign('id_barang')->references('id')->on('barangs');
             $table->integer('quantity');
-            $table->decimal('total_price',10, 2);
+            $table->decimal('sub_total',10, 2);
             $table->timestamps();
         });
     }

@@ -5,6 +5,7 @@ use App\Barang;
 use App\User;
 use App\Keranjang;
 use Validator;
+use Session;
 use Illuminate\Http\Request;
 
 class KeranjangController extends Controller
@@ -16,26 +17,18 @@ class KeranjangController extends Controller
         return response()->json($keranjang);
         
    }
-   public function store(Request $request,$id)
-    {
-        $id = Barang::get('id_user');
-        $harga = Barang::get('price');
-        $duplicates = Keranjang::search(function ($KeranjangItem,$idbarang) use ($request) {
-            return $KeranjangItem->id_cart === $request->id_cart;
-        });
-
-        if (!$duplicates->isEmpty()) {
-            return response()->json([
-                'message' => 'item telah d tambahkan'
-            ]);
-        }
-            $keranjang = new Keranjang;
-            $keranjang->quantity = $request->quantity;
-            $keranjang->total_price = $keranjang->quantity * $harga;
-            $keranjang->id_barang = $idbarang;
-            $keranjang->save();
-            return response()->json([
-                'message' => 'berhasil dibuat'
-            ]);
-    }
+   public function getCart()
+   {
+       if (!Session::has('keranjang')) {
+           return response()->json([
+               'message' => 'keranjang kosong'
+           ]);
+       }
+       $cart = Session::get('keranjang');
+       $keranjang = new Keranjang($cart);
+       return response()->json([
+        'products' => $keranjang->items,
+        'total harga' => $keranjang->totalPrice,
+    ]);
+   }
 }

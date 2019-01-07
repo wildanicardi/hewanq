@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 use App\Barang;
+use App\Keranjang;
 use App\User;
+use Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 
@@ -28,10 +30,14 @@ class BarangController extends Controller
         return view('pets.list',compact('pets','users'));
     }
     //api android
-    public function barangs(Barang $barang)
+    public function barangs($id)
     {
-        $barang = $barang->all();
-        return response()->json($barang);
+        $barang = Barang::find($id);
+        $user = User::find($barang->id_user);
+        return response()->json([
+        'user' => $user->name,
+         'barang' => $barang,
+        ]);
         
     }
     public function barangku($id)
@@ -41,5 +47,16 @@ class BarangController extends Controller
           'barang' =>$barang
         ]);
         
+    }
+    public function getAddToCart(Request $request,$id)
+    {
+        $barang = Barang::find($id);
+        $cart = Session::has('keranjang') ? Session::get('keranjang') : null;
+        $keranjang = new Keranjang($cart);
+        $keranjang->add($barang,$barang['id']);
+        $request->session()->put('keranjang',$keranjang);
+        return response()->json([
+            'keranjang' =>$keranjang
+          ]);
     }
 }
