@@ -15,6 +15,7 @@ class CreateDataPengirimanTable extends Migration
     {
         Schema::create('data_pengiriman', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('id_order')->foreign('id_order')->references('id')->on('orders');
             $table->string('nama_penerima');
             $table->integer('telepon');
             $table->text('alamat');

@@ -15,10 +15,8 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_pengiriman')->foreign('id_pengiriman')->references('id')->on('data_pengiriman');
             $table->integer('id_user')->foreign('id_user')->references('id ')->on('users');
             $table->integer('id_barang')->foreign('id_barang')->references('id ')->on('barangs');
-            $table->integer('id_pembayaran')->foreign('id_pembayaran')->references('id')->on('konfirmasi_pembayaran');
             $table->string('catatan');
             $table->integer('total');
             $table->integer('status_bayar');

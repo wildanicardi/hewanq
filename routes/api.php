@@ -16,6 +16,7 @@ Route::get('articles','ArticleController@articles');
 
 Route::get('barangs/{id}','BarangController@barangs');// get data untuk tampilan awal android
 Route::get('barang/{id}','BarangController@barangku');//get data detail barnag ketika di klik
+Route::get('barangs','BarangController@indexBarang');
 
 //new
 Route::group(['namespace' => 'Api'], function(){

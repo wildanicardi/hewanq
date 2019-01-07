@@ -30,6 +30,14 @@ class BarangController extends Controller
         return view('pets.list',compact('pets','users'));
     }
     //api android
+    public function indexBarang(Barang $barang)
+    {
+        $barang = Barang::all();
+        return response()->json([
+            'barang' => $barang,
+        ]);
+        
+    }
     public function barangs($id)
     {
         $barang = Barang::find($id);
