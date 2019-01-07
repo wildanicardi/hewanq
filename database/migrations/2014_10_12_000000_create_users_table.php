@@ -25,7 +25,7 @@ class CreateUsersTable extends Migration
             $table->string('kota')->nullable();
             $table->text('alamat')->nullable();
             $table->text('hewan_dilayani')->nullable();//untuk dokter
-            $table->text('faisilitas')->nullable();//untuk dokter
+            $table->text('fasilitas')->nullable();//untuk dokter
             $table->string('favorite_pet')->nullable();//untuk pembeli
             $table->text('deskripsi')->nullable();;//untuk penjual
             $table->string('api_token');

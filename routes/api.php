@@ -8,6 +8,7 @@ Route::post('penjual/register','UserController@createPenjual');
 Route::post('dokter/register','UserController@createDokter');
 Route::get('users','UserController@users');
 Route::get('dokters','UserController@doctors');
+Route::get('detailDokter/{id}','UserController@detailDokter');
 Route::get('penjual','UserController@penjual');
 Route::get('users/profile','UserController@profile')->middLeware('auth:api');
 
@@ -24,7 +25,7 @@ Route::group(['namespace' => 'Api'], function(){
     Route::get('service', 'JasaController@service');// get data untuk tampilan awal android
     Route::get('service/{id}','JasaController@index');
     Route::post('updateService/{id}', 'JasaController@updateService');
-    Route::get('editService/{id}', 'JasaController@editCatering');
+    Route::get('editService/{id}', 'JasaController@editService');
     Route::post('buatService/{id}', 'JasaController@createService');
     Route::get('service/{id}/detail_service', 'JasaController@detailService');
     Route::delete('service/{id}', 'JasaController@destroy');

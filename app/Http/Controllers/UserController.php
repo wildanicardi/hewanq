@@ -94,6 +94,20 @@ class UserController extends Controller
         $users = user::all();
     }
     //fucntion dokter
+    public function detailDokter($id)
+    {
+        $dokter = User::find($id);
+        
+        return response()->json([
+            'nama' => $dokter->name,
+            'jenis_kelamin' => $dokter->jenis_kelamin,
+            'phone' => $dokter->phone,
+            'alamat' => $dokter->alamat,
+            'hewan_dilayani' => $dokter->hewan_dilayani,
+            'fasilitas' => $dokter->fasilitas,
+          ]);
+
+    }
     public function indexDokter()
     {
         $doctors = User::all()->where('role_id',4);
@@ -131,7 +145,10 @@ class UserController extends Controller
     {
         $dokter = $dokter->all()->where('role_id',4);
 
-        return response()->json($dokter);
+        return response()->json([
+          'dokter' => $dokter,
+            
+        ]);
         
     }
     public function penjual(User $penjual)
@@ -202,8 +219,7 @@ class UserController extends Controller
             'jenis_kelamin'    => $request->jenis_kelamin,
             'phone'     => $request->phone,
             'hewan_dilayani' => $request->hewan_dilayani,
-            'favorite_pet' => $request->favorite_pet,
-            'faisilitas' => $request->faisilitas,
+            'fasilitas' => $request->fasilitas,
             'deskripsi' => $request->deskripsi,
             'password'  =>bcrypt($request->password),
             'role_id'      =>4,
