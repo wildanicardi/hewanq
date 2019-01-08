@@ -12,7 +12,7 @@ class ItemController extends Controller
     //api android
     public function index($id)
     {
-        $item = Barang::where('jenis', 'item')->get();
+        $item = Barang::where('id', $id)->get();
         return response()->json([
            'item' => $item,
         ]);

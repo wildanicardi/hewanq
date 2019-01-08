@@ -15,6 +15,7 @@ Route::get('detailUser/{id}','UserController@detailUser');
 Route::get('users/profile','UserController@profile')->middLeware('auth:api');
 
 Route::get('articles','ArticleController@articles');
+Route::get('articles/{id}','ArticleController@detailArticle');
 
 
 Route::get('barangs/{id}','BarangController@barangs');// get data untuk tampilan awal android

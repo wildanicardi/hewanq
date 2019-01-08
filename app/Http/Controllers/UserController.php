@@ -217,23 +217,25 @@ class UserController extends Controller
             'email'     => 'required|email|max:191|unique:users',
             'password'  => 'required|min:6',
         ]);
-        $dokter = $user->create([
-            'name'      => $request->name,
-            'email'     => $request->email,
-            'photo'     => $request->photo,
-            'alamat'     => $request->alamat,
-            "kota"          => $request->kota,
-            'jenis_kelamin'    => $request->jenis_kelamin,
-            'phone'     => $request->phone,
-            'hewan_dilayani' => $request->hewan_dilayani,
-            'fasilitas' => $request->fasilitas,
-            'deskripsi' => $request->deskripsi,
-            'password'  =>bcrypt($request->password),
-            'role_id'      =>4,
-            'api_token' =>bcrypt($request->email)
-        ]);
+        $users = new User;
+        $users->name   = $request->name;
+        $users->email   = $request->email;
+        $users->role_id    = 4;
+        $users->alamat    = $request->alamat;
+        $users->kota    = $request->kota;
+        $users->jenis_kelamin    = $request->jenis_kelamin;
+        $users->phone    = $request->phone;
+        $users->password  =bcrypt($request->password);
+        $users->api_token =bcrypt($request->email);
+        if($request->hasFile('photo')){
+                $users->photo = $request->file('photo')->getClientOriginalName();
+                $foto = $request->file('photo');
+                $namaFoto = $foto->getClientOriginalName();
+                $path = $foto->move(public_path('/images'), $namaFoto);
+        }
+        $users->save();
         return response()->json([
-           'dokter' => $dokter
+           'dokter' => $user,
         ]);
     }
 

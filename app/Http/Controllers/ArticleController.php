@@ -56,7 +56,17 @@ class ArticleController extends Controller
     {
         $article = $article->all();
 
-        return response()->json($article);
+        return response()->json([
+        'article' =>  $article,
+        ]);
+        
+    }
+    public function detailArticle($id)
+    {
+        $article = Article::where('id',$id)->get();
+        return response()->json([
+           'article' => $article
+        ]);
         
     }
 
