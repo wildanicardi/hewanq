@@ -149,9 +149,11 @@ class UserController extends Controller
     //api android
     public function doctors(User $dokter)
     {
-        $dokter = $dokter->all()->where('role_id',4);
 
-        return response()->json($dokter);
+        $dokter = $dokter->where('role_id',4)->get();
+        return response()->json([
+            'dokter' =>  $dokter
+        ]);
         
     }
     public function penjual(User $penjual)
