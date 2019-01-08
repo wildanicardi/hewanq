@@ -21,6 +21,7 @@ class AuthController extends Controller
         $users->email   = $request->email;
         $users->role_id    = 1;
         $users->alamat    = $request->alamat;
+        $users->kota    = $request->kota;
         $users->jenis_kelamin    = $request->jenis_kelamin;
         $users->phone    = $request->phone;
         $users->password  =bcrypt($request->password);
@@ -34,6 +35,22 @@ class AuthController extends Controller
         $users->save();
         return response()->json([
             'user' => $users
+        ]);
+    }
+    public function updateAkun(Request $request,$id)
+    {
+        $user = User::find($id)->update([
+            "name" => $request->name,
+            "email" => $request->email,
+            "kota" => $request->kota,
+            "alamat" => $request->alamat,
+            "jenis_kelamin" => $request->jenis_kelamin,
+            "photo" => $request->photo,
+            "phone" => $request->phone,
+        ]);
+
+        return response()->json([
+            'message' => 'berhasil diupdate'
         ]);
         
     }

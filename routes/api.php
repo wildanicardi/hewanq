@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 
 Route::post('auth/register','AuthController@registerAdmin');
+Route::post('auth/update/{id}','AuthController@updateAkun');
 Route::post('auth/login','AuthController@login');
 Route::post('penjual/register','UserController@createPenjual');
 Route::post('dokter/register','UserController@createDokter');
@@ -38,7 +39,7 @@ Route::group(['namespace' => 'Api'], function(){
     Route::post('updateHewan/{id}', 'PetController@updatePet');
     Route::get('editHewan/{id}', 'PetController@editPet');
     Route::post('buatHewan/{id}', 'PetController@createPet');
-    //Route::get('service/{id}/detail_service', 'PetController@detailService');
+    
     Route::delete('hewan/{id}', 'PetController@destroy');
 
     //item
@@ -48,7 +49,6 @@ Route::group(['namespace' => 'Api'], function(){
     Route::post('updateItem/{id}', 'ItemController@updateItem');
     Route::get('editItem/{id}', 'ItemController@editItem');
     Route::post('buatItem/{id}', 'ItemController@buatItem');
-    //Route::get('service/{id}/detail_service', 'ItemController@detailService');
     Route::delete('item/{id}', 'ItemController@destroy');
 });
 //keranjang
