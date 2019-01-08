@@ -20,7 +20,7 @@ class ItemController extends Controller
     }
     public function items($id)
     {
-        $item = Barang::find($id);
+        $item = Barang::find($id)->where('jenis','pet');
         $user = User::find($item->id_user);
         return response()->json([
         'user' => $user->name,
