@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 11, 2018 at 06:22 AM
+-- Generation Time: Jan 08, 2019 at 01:58 AM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.1.22
 
@@ -30,19 +30,12 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `articles` (
   `id` int(10) UNSIGNED NOT NULL,
-  `title` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `value` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `judul` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `isi` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `photo` text COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `articles`
---
-
-INSERT INTO `articles` (`id`, `title`, `value`, `photo`, `created_at`, `updated_at`) VALUES
-(1, 'hewan pintar', 'cara membuat hewan jadi pintar', NULL, '2018-12-10 00:56:27', '2018-12-10 19:18:08');
 
 -- --------------------------------------------------------
 
@@ -54,7 +47,9 @@ CREATE TABLE `barangs` (
   `id` int(10) UNSIGNED NOT NULL,
   `id_user` int(11) NOT NULL,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `jenis_barang` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `deskripsi_barang` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `kota` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `alamat` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `photo` text COLLATE utf8mb4_unicode_ci,
   `stock` int(11) NOT NULL,
   `price` int(11) NOT NULL,
@@ -73,9 +68,10 @@ CREATE TABLE `barangs` (
 -- Dumping data for table `barangs`
 --
 
-INSERT INTO `barangs` (`id`, `id_user`, `name`, `jenis_barang`, `photo`, `stock`, `price`, `size`, `ukuran`, `jenis_hewan`, `gender`, `tgl_lahir`, `riwayat_kesehatan`, `jenis`, `created_at`, `updated_at`) VALUES
-(1, 4, 'kitty', 'hewan', NULL, 1, 1200000, NULL, NULL, 'kucing', 'wanita', '2017-09-07', 'sehat', 'pet', '2018-12-10 00:42:01', '2018-12-10 00:42:01'),
-(2, 3, 'wedi', 'barnag', NULL, 9, 10000, '2.00', 'kg', NULL, NULL, NULL, NULL, 'item', NULL, '2018-12-10 00:54:37');
+INSERT INTO `barangs` (`id`, `id_user`, `name`, `deskripsi_barang`, `kota`, `alamat`, `photo`, `stock`, `price`, `size`, `ukuran`, `jenis_hewan`, `gender`, `tgl_lahir`, `riwayat_kesehatan`, `jenis`, `created_at`, `updated_at`) VALUES
+(1, 1, 'oke', 'hewan', 'sby', 'gebang', NULL, 1, 1200000, NULL, NULL, 'kucing', 'cowok', '2019-01-01', 'sehat', 'pet', '2019-01-07 05:13:07', '2019-01-07 05:13:07'),
+(2, 1, 'oke', 'hewan', 'sby', 'gebang', NULL, 1, 1200000, NULL, NULL, 'kucing', 'cowok', '2019-01-01', 'sehat', 'pet', '2019-01-07 07:32:21', '2019-01-07 07:32:21'),
+(3, 1, 'oke', 'barang', 'gresik', 'dukun', NULL, 12, 120000, '1.00', 'kg', NULL, NULL, NULL, NULL, 'item', '2019-01-22 17:00:00', '2019-01-15 17:00:00');
 
 -- --------------------------------------------------------
 
@@ -102,6 +98,7 @@ CREATE TABLE `chats` (
 
 CREATE TABLE `data_pengiriman` (
   `id` int(10) UNSIGNED NOT NULL,
+  `id_order` int(11) NOT NULL,
   `nama_penerima` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `telepon` int(11) NOT NULL,
   `alamat` text COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -146,10 +143,10 @@ CREATE TABLE `kategori` (
 
 CREATE TABLE `keranjangs` (
   `id_cart` int(10) UNSIGNED NOT NULL,
+  `id_user` int(11) NOT NULL,
   `id_barang` int(11) NOT NULL,
-  `id_service` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
-  `total_price` int(11) NOT NULL,
+  `sub_total` decimal(10,2) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -188,18 +185,20 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '2014_10_12_000000_create_users_table', 1),
-(2, '2014_10_12_100000_create_password_resets_table', 1),
-(3, '2018_10_21_024757_create_service_table', 1),
-(4, '2018_10_21_024912_create_keranjang_table', 1),
-(5, '2018_11_25_031022_create_kategori_table', 1),
-(6, '2018_11_25_031134_create_orders_table', 1),
-(7, '2018_11_25_031218_create_data_pengiriman_table', 1),
-(8, '2018_11_25_031251_create_konfirmasi_pembayaran_table', 1),
-(9, '2018_11_27_032102_create_barangs_table', 1),
-(10, '2018_11_28_024658_create_headers_table', 1),
-(11, '2018_11_28_024844_create_chats_table', 1),
-(12, '2018_11_28_165223_create_articles_table', 1);
+(239, '2014_10_12_000000_create_users_table', 1),
+(240, '2014_10_12_100000_create_password_resets_table', 1),
+(241, '2018_10_21_024757_create_service_table', 1),
+(242, '2018_10_21_024912_create_keranjang_table', 1),
+(243, '2018_10_21_025012_create_transaction_table', 1),
+(244, '2018_11_25_031022_create_kategori_table', 1),
+(245, '2018_11_25_031134_create_orders_table', 1),
+(246, '2018_11_25_031218_create_data_pengiriman_table', 1),
+(247, '2018_11_25_031251_create_konfirmasi_pembayaran_table', 1),
+(248, '2018_11_27_032102_create_barangs_table', 1),
+(249, '2018_11_28_024658_create_headers_table', 1),
+(250, '2018_11_28_024844_create_chats_table', 1),
+(251, '2018_11_28_165223_create_articles_table', 1),
+(252, '2018_12_26_070401_create_role_table', 1);
 
 -- --------------------------------------------------------
 
@@ -209,15 +208,54 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 
 CREATE TABLE `orders` (
   `id` int(10) UNSIGNED NOT NULL,
-  `id_pengiriman` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
-  `id_barang` int(11) NOT NULL,
-  `id_pembayaran` int(11) NOT NULL,
-  `catatan` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `order_status_id` int(11) NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `total` int(11) NOT NULL,
-  `status_bayar` int(11) NOT NULL,
-  `status_selesai` int(11) NOT NULL,
-  `tanggal` datetime NOT NULL,
+  `bayar` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `id_user`, `order_status_id`, `name`, `total`, `bayar`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 'admin', 0, 0, '2019-01-07 05:12:24', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_items`
+--
+
+CREATE TABLE `order_items` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `id_barang` int(11) NOT NULL,
+  `orders_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `order_items`
+--
+
+INSERT INTO `order_items` (`id`, `id_barang`, `orders_id`, `quantity`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 1, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_status`
+--
+
+CREATE TABLE `order_status` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `order_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `order_deskripsi` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -237,27 +275,60 @@ CREATE TABLE `password_resets` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `services`
+-- Table structure for table `roles`
 --
 
-CREATE TABLE `services` (
+CREATE TABLE `roles` (
   `id` int(10) UNSIGNED NOT NULL,
-  `id_user` int(11) NOT NULL,
-  `shop_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `address` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `open_at` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `photo` int(11) DEFAULT NULL,
-  `facility` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nama_role` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `services`
+-- Dumping data for table `roles`
 --
 
-INSERT INTO `services` (`id`, `id_user`, `shop_name`, `address`, `open_at`, `photo`, `facility`, `created_at`, `updated_at`) VALUES
-(1, 3, 'Jasa Memandikan Kucing', 'SDA', '8 Malam', NULL, 'lengkap', '2018-12-10 00:17:40', '2018-12-10 00:17:40');
+INSERT INTO `roles` (`id`, `nama_role`, `created_at`, `updated_at`) VALUES
+(1, 'Admin', '2019-01-07 06:52:11', '2019-01-07 06:52:11'),
+(2, 'Pembeli', '2019-01-07 06:52:11', '2019-01-07 06:52:11'),
+(3, 'Penjual', '2019-01-07 06:52:11', '2019-01-07 06:52:11'),
+(4, 'Dokter', '2019-01-07 06:52:11', '2019-01-07 06:52:11');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `services`
+--
+
+CREATE TABLE `services` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Hewan_dilayani` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `kota` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `alamat` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `hari_buka` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `jam_buka` time NOT NULL,
+  `photo` text COLLATE utf8mb4_unicode_ci,
+  `deskripsi` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `harga` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `transactions`
+--
+
+CREATE TABLE `transactions` (
+  `id_transaction` int(10) UNSIGNED NOT NULL,
+  `total` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -267,22 +338,20 @@ INSERT INTO `services` (`id`, `id_user`, `shop_name`, `address`, `open_at`, `pho
 
 CREATE TABLE `users` (
   `id` int(10) UNSIGNED NOT NULL,
+  `role_id` int(11) NOT NULL,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `gender` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `jenis_kelamin` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `phone` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `photo` text COLLATE utf8mb4_unicode_ci,
   `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `address` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `provinsi` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `kota` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `zip` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `pet` text COLLATE utf8mb4_unicode_ci,
-  `facility` text COLLATE utf8mb4_unicode_ci,
+  `alamat` text COLLATE utf8mb4_unicode_ci,
+  `hewan_dilayani` text COLLATE utf8mb4_unicode_ci,
+  `fasilitas` text COLLATE utf8mb4_unicode_ci,
   `favorite_pet` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `deskripsi` text COLLATE utf8mb4_unicode_ci,
   `api_token` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `role` enum('admin','pembeli','penjual','dokter') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'pembeli',
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -292,11 +361,11 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `gender`, `phone`, `photo`, `password`, `address`, `provinsi`, `kota`, `zip`, `pet`, `facility`, `favorite_pet`, `deskripsi`, `api_token`, `role`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'aliwildan', 'ali7@gmail.com', 'pria', '123456', NULL, '$2y$10$KD8Sg9yUmDbAGpgIp7bbbOIVnsrLzxyYT9Jqlj/ynIyjhxIYXvegG', 'Gresik', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$eZDXCiNaYaZRA2zy3ojhKev8P.DjBWeXP/GcV2n/td40q5HLxhw2q', 'admin', 'ZFHmdZuz25Pm7wFkVS26KNhbANibR97EZkHYL8OmI0YrgeNLekBVnYA26d0z', '2018-12-07 02:10:50', '2018-12-07 02:10:50'),
-(2, 'Muhammad Ali wildan', 'aliwildan99@gmail.com', 'pria', NULL, NULL, '$2y$10$yWZe1MI3pjvqBVkf26H5H.Boy5RTH6dyK94pE6CDqYs7XXqMioEWa', 'Smbunganyar  Rt 06/Rw 02\r\nDukun', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$yEXp/OTa0UTWIj5HmTgNPOE5A8xWbHStY.deybjE82AahFPsL6Yge', 'pembeli', NULL, '2018-12-07 03:35:07', '2018-12-07 03:35:07'),
-(3, 'm ali', 'muhammadaliwildan7@gmail.com', 'pria', '123', NULL, '123456', 'Smbunganyar  Rt 06/Rw 02\r\nDukun', NULL, NULL, NULL, 'cat', 'lengkap', NULL, NULL, '$2y$10$x/oAnsWc4i8wZWSvZwEu0.FMOD8NMikTrgnynezAII.MTNBN0WxVW', 'dokter', NULL, '2018-12-09 23:57:19', '2018-12-09 23:57:31'),
-(4, 'wildan ozil', 'ozil@gmail.com', 'pria', NULL, NULL, '123456', 'gresik', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$E75gemKRi8N3AsKN2.siN.V.YVxccyZIwbam3TjW1m7QETkCtfmc.', 'penjual', NULL, '2018-12-09 23:57:52', '2018-12-09 23:58:01');
+INSERT INTO `users` (`id`, `role_id`, `name`, `email`, `jenis_kelamin`, `phone`, `photo`, `password`, `kota`, `alamat`, `hewan_dilayani`, `fasilitas`, `favorite_pet`, `deskripsi`, `api_token`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 1, 'muhammad ali', 'ali7@gmail.com', 'pria', '123456', NULL, '$2y$10$B4mCZAddONWGWUrINcf8buSBZ8LBxme7QJ8j28MIP/z7joUTkhLLe', NULL, 'Gresik', NULL, NULL, NULL, NULL, '$2y$10$kZR0h72dOd9xNl1ItbYKDef9LBoSKQUWgpPiFe6S3SiYJkMariZSi', 'kDiqTYMFvnV1nfdLykeE5G1KT2jfRJmrrgEBM29lcfw7yVQZxgXK7aPNZskC', '2019-01-07 05:07:22', '2019-01-07 05:07:22'),
+(2, 4, 'aliando', 'aliwildan99@gmail.com', 'pria', '123', NULL, '$2y$10$8sPa3yBztCms2LLh1C34V.3GN1KJ/l90fzrbWYX0Keg.7KtYXmknK', NULL, 'dukun', 'anjing', 'lengkap', NULL, 'lengkap', '$2y$10$uiflDp.IAgw/fX3cPnChAeV4/bviILbZGmtxvrno2LsFRwm.Lh4rm', NULL, '2019-01-07 06:46:16', '2019-01-07 06:46:16'),
+(3, 3, 'muhammad ali', 'ali87@gmail.com', 'pria', '123456', NULL, '$2y$10$gsHTnEjaPFmM5TGLRzO.YuUxfNT58.JiYUpqwq3U1fXnH87d3zQ4S', NULL, 'Gresik', NULL, NULL, NULL, NULL, '$2y$10$9JLVJ5Hyg9CGG2mL2uig2ucL9hIlk..Xcxn7s2B7w18DFp07uWJO.', NULL, '2019-01-07 08:51:18', '2019-01-07 08:51:18'),
+(4, 1, 'ali ganteng', 'aliganteng@gmail.com', 'Pria', '123', NULL, '$2y$10$Rsu4SwBlpFFFELazHG1hfOP/Zo7.6/2scIdPcN4CHdT187R5WU5F.', 'Gresik', 'Dukun', NULL, NULL, NULL, NULL, '$2y$10$kXt/zbosrzr.JZINO9fOGu4WCKictwXdclU5twBSyhoF2n/tMl5ku', NULL, '2019-01-07 17:06:06', '2019-01-07 17:43:56');
 
 --
 -- Indexes for dumped tables
@@ -363,16 +432,40 @@ ALTER TABLE `orders`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `order_items`
+--
+ALTER TABLE `order_items`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `order_status`
+--
+ALTER TABLE `order_status`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `password_resets`
 --
 ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
 
 --
+-- Indexes for table `roles`
+--
+ALTER TABLE `roles`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `services`
 --
 ALTER TABLE `services`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `transactions`
+--
+ALTER TABLE `transactions`
+  ADD PRIMARY KEY (`id_transaction`);
 
 --
 -- Indexes for table `users`
@@ -389,13 +482,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `articles`
 --
 ALTER TABLE `articles`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `barangs`
 --
 ALTER TABLE `barangs`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `chats`
@@ -437,19 +530,43 @@ ALTER TABLE `konfirmasi_pembayaran`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=253;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `order_items`
+--
+ALTER TABLE `order_items`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `order_status`
+--
+ALTER TABLE `order_status`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `roles`
+--
+ALTER TABLE `roles`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `services`
 --
 ALTER TABLE `services`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `transactions`
+--
+ALTER TABLE `transactions`
+  MODIFY `id_transaction` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
