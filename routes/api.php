@@ -8,9 +8,9 @@ Route::post('penjual/register','UserController@createPenjual');
 Route::post('dokter/register','UserController@createDokter');
 Route::get('users','UserController@users');
 Route::get('dokters','UserController@doctors');
+Route::get('penjual','UserController@penjual');
 Route::get('detailDokter/{id}','UserController@detailDokter');
 Route::get('detailUser/{id}','UserController@detailUser');
-Route::get('penjual','UserController@penjual');
 Route::get('users/profile','UserController@profile')->middLeware('auth:api');
 
 Route::get('articles','ArticleController@articles');
@@ -33,7 +33,8 @@ Route::group(['namespace' => 'Api'], function(){
     
     //pet
     Route::get('pet', 'PetController@pet');// get data untuk tampilan awal android
-    Route::get('pet/{id}','PetController@index');
+    Route::get('hewan/{id}', 'PetController@petsDetail');//detail hewan dengan id 
+    Route::get('pet/{id}','PetController@index');//detail hewan yg di miliki oleh user
     Route::post('updateHewan/{id}', 'PetController@updatePet');
     Route::get('editHewan/{id}', 'PetController@editPet');
     Route::post('buatHewan/{id}', 'PetController@createPet');
@@ -42,6 +43,7 @@ Route::group(['namespace' => 'Api'], function(){
 
     //item
     Route::get('item', 'ItemController@item');// get data untuk tampilan awal android
+    Route::get('produk/{id}', 'ItemController@items');
     Route::get('item/{id}','ItemController@index');
     Route::post('updateItem/{id}', 'ItemController@updateItem');
     Route::get('editItem/{id}', 'ItemController@editItem');

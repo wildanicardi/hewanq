@@ -13,9 +13,19 @@ class PetController extends Controller
      //api android
      public function index($id)
     {
-        $pet = Barang::where('id_user',$id)->get();
+        $pet = Barang::where('jenis','pet' )->get();
         return response()->json([
            'pet' => $pet
+        ]);
+        
+    }
+    public function petsDetail($id)
+    {
+        $pet = Barang::find($id);
+        $user = User::find($pet->id_user);
+        return response()->json([
+        'user' => $user->name,
+         'pet' => $pet,
         ]);
         
     }

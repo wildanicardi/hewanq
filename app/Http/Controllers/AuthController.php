@@ -16,18 +16,25 @@ class AuthController extends Controller
             'email'     => 'required|email|max:191|unique:users',
             'password'  => 'required|min:6',
         ]);
-        $users = $user->create([
-            'name'      => $request->name,
-            'role_id'  => 1,
-            'email'     => $request->email,
-            'photo'     => $request->photo,
-            'alamat'     => $request->alamat,
-            'jenis_kelamin'    => $request->jenis_kelamin,
-            'phone'     => $request->phone,
-            'password'  =>bcrypt($request->password),
-            'api_token' =>bcrypt($request->email)
+        $users = new User;
+        $users->name   = $request->name;
+        $users->email   = $request->email;
+        $users->role_id    = 1;
+        $users->alamat    = $request->alamat;
+        $users->jenis_kelamin    = $request->jenis_kelamin;
+        $users->phone    = $request->phone;
+        $users->password  =bcrypt($request->password);
+        $users->api_token =bcrypt($request->email);
+        if($request->hasFile('photo')){
+                $users->photo = $request->file('photo')->getClientOriginalName();
+                $foto = $request->file('photo');
+                $namaFoto = $foto->getClientOriginalName();
+                $path = $foto->move(public_path('/images'), $namaFoto);
+        }
+        $users->save();
+        return response()->json([
+            'user' => $users
         ]);
-        return $users;
         
     }
     public function login(Request $request,User $user)

@@ -18,6 +18,16 @@ class JasaController extends Controller
         ]);
         
     }
+    public function services($id)
+    {
+        $service = Barang::find($id);
+        $user = User::find($service->id_user);
+        return response()->json([
+        'user' => $user->name,
+         'service' => $service,
+        ]);
+        
+    }
     public function index($id)
     {
         $service = Service::where('user_id',$id)->get();

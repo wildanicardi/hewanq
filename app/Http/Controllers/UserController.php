@@ -87,7 +87,9 @@ class UserController extends Controller
     {
         $user = $user->find(Auth::user()->id);
 
-        return response()->json($users);
+        return response()->json([
+            'user' => $users
+        ]);
     }
     public function show()
     {
@@ -149,10 +151,7 @@ class UserController extends Controller
     {
         $dokter = $dokter->all()->where('role_id',4);
 
-        return response()->json([
-          'dokter' => $dokter,
-            
-        ]);
+        return response()->json($dokter);
         
     }
     public function penjual(User $penjual)
